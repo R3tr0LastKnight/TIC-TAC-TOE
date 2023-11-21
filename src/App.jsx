@@ -4,6 +4,8 @@ import Board from "./Board";
 import Square from "./Square";
 import { useState } from "react";
 import { useEffect } from "react";
+import blueBg from "./Assets/blue.mp4";
+import sound from "./Assets/kb.mp3";
 
 const defaultSquares = () => new Array(9).fill(null);
 
@@ -89,18 +91,19 @@ function App() {
     const playerWon = linesThatAre("x", "x", "x").length > 0;
     const computerWon = linesThatAre("o", "o", "o").length > 0;
     if (playerWon) {
+      setEnd(true);
       setWinner("x");
       setPlayerPoints(playerPoints + 1);
-      setEnd(true);
+      return;
     }
     if (computerWon) {
+      setEnd(true);
       setWinner("o");
       setAiPoints(aiPoints + 1);
-      setEnd(true);
     }
     if (emptyIndexes.filter((index) => squares[index] === null).length === 0) {
-      setWinner("s");
       setEnd(true);
+      setWinner("s");
     }
 
     const putComputerAt = (index) => {
@@ -146,54 +149,61 @@ function App() {
   }, [squares]);
 
   return (
-    <main>
-      <h1>TIC TAC TOE</h1>
-      <p>can u beat this rogue AI ?</p>
-      <Board>
-        {squares.map((square, index) => (
-          <Square
-            x={square === "x" ? 1 : 0}
-            o={square === "o" ? 1 : 0}
-            onClick={() => handleSquareClick(index)}
-          />
-        ))}
-      </Board>
+    <div className="overseer">
+      <video src={blueBg} autoPlay loop muted></video>
+      <main>
+        <h1>TIC TAC TOE</h1>
+        <p>can u beat this rogue AI ?</p>
+        <Board>
+          {squares.map((square, index) => (
+            <Square
+              x={square === "x" ? 1 : 0}
+              o={square === "o" ? 1 : 0}
+              onClick={() => handleSquareClick(index)}
+            />
+          ))}
+        </Board>
 
-      <div className="util">
-        <button className="reset" onClick={() => resetTheBoard()}>
-          RESET
-        </button>
-        <div className="points">
-          <div>P1 : {playerPoints}</div>
-          <div>AI : {aiPoints}</div>
+        <div className="util">
+          <button className="reset" onClick={() => resetTheBoard()}>
+            RESET
+          </button>
+          <audio controls loop src={sound}></audio>
+          <div className="points">
+            <div>P1 : {playerPoints}</div>
+            <div>AI : {aiPoints}</div>
+          </div>
         </div>
-      </div>
 
-      {!!winner && winner === "x" && (
-        <div className="result green">
-          <div className="">You Won 〈^✪ᆺ✪^〉</div>
-          <div className="sus">
-            {quipsW[Math.floor(Math.random() * quipsW.length)]}
+        {!!winner && winner === "x" && (
+          <div className="result green">
+            <div className="">You Won </div>
+            <div>〈^✪ᆺ✪^〉</div>
+            <div className="sus">
+              {quipsW[Math.floor(Math.random() * quipsW.length)]}
+            </div>
           </div>
-        </div>
-      )}
-      {!!winner && winner === "o" && (
-        <div className="result red">
-          <div className="">You Lost ฅ(ﾐ⎚ﻌ⎚ﾐ)∫</div>
-          <div className="sus">
-            {quipsL[Math.floor(Math.random() * quipsL.length)]}
+        )}
+        {!!winner && winner === "o" && (
+          <div className="result red">
+            <div className="">You Lost </div>
+            <div>ฅ(ﾐ⎚ﻌ⎚ﾐ)∫</div>
+            <div className="sus">
+              {quipsL[Math.floor(Math.random() * quipsL.length)]}
+            </div>
           </div>
-        </div>
-      )}
-      {!!winner && winner === "s" && (
-        <div className="result gray">
-          <div className="">Its a Tie ¯\_(ツ)_/¯</div>
-          <div className="sus">
-            {quipsT[Math.floor(Math.random() * quipsT.length)]}
+        )}
+        {!!winner && winner === "s" && (
+          <div className="result gray">
+            <div className="">Its a Tie </div>
+            <div>¯\_(ツ)_/¯</div>
+            <div className="sus">
+              {quipsT[Math.floor(Math.random() * quipsT.length)]}
+            </div>
           </div>
-        </div>
-      )}
-    </main>
+        )}
+      </main>
+    </div>
   );
 }
 

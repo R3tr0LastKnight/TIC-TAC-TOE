@@ -1,18 +1,53 @@
-body {
-  background: #123;
-  color: #fff;
+* {
+  margin: 0;
+}
+
+.overseer {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #123;
+}
+
+video {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  position: absolute;
 }
 
 main {
+  display: flex;
+  flex-direction: column;
   width: 300px;
-  margin: 50px auto 0;
+  margin: auto;
+  position: relative;
+  top: 50px;
+  z-index: 10;
+  background: #123;
+  color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  filter: drop-shadow(0px 5px 4px #3e3e7a);
 }
+@media (max-width: 342px) {
+  main {
+    padding: 10px;
+  }
+  video {
+    object-fit: cover;
+  }
+}
+
 h1 {
   text-align: center;
 }
 p {
   text-align: center;
-  margin-top: -12px;
+  margin: 5px;
 }
 
 div.board {
@@ -37,6 +72,28 @@ div.util {
   display: flex;
   /* justify-content: center; */
   gap: 20px;
+  align-items: center;
+}
+
+.playback {
+  display: flex;
+  /* justify-content: space-between; */
+  /* width: 20%; */
+  margin: 5px;
+  border: 2px solid #fff;
+  background: #123;
+  color: #fff;
+  padding: 10px 5px;
+  text-align: center;
+}
+.playback:hover {
+  translate: 00px -5px;
+  transition: 0.24s;
+  filter: drop-shadow(0px 5px 1px #fff);
+}
+.playback:active {
+  translate: 0px 0px;
+  filter: drop-shadow(0px 0px 1px #fff);
 }
 div.points {
   display: flex;
@@ -52,6 +109,15 @@ button.reset {
   color: #fff;
   padding: 10px 5px;
   text-align: center;
+}
+.reset:hover {
+  translate: 00px -5px;
+  transition: 0.24s;
+  filter: drop-shadow(0px 5px 1px #fff);
+}
+.reset:active {
+  translate: 0px 0px;
+  filter: drop-shadow(0px 0px 1px #fff);
 }
 
 div.result {
@@ -78,4 +144,33 @@ div.result {
 
 .sus {
   font-size: 1rem;
+}
+
+audio {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+audio::-webkit-media-controls-panel {
+  -webkit-justify-content: center;
+  /* height: 25px; */
+}
+
+/* Removes the timeline */
+audio::-webkit-media-controls-timeline {
+  display: none !important;
+}
+
+/* Removes the time stamp */
+audio::-webkit-media-controls-current-time-display {
+  display: none;
+}
+audio::-webkit-media-controls-time-remaining-display {
+  display: none;
+}
+audio::-webkit-media-controls-mute-button {
+  display: none;
 }
