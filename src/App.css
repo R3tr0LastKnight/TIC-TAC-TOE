@@ -32,6 +32,7 @@ main {
   padding: 20px;
   border-radius: 4px;
   filter: drop-shadow(0px 5px 4px #3e3e7a);
+  margin-bottom: 500px;
 }
 @media (max-width: 342px) {
   main {
