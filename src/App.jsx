@@ -31,7 +31,7 @@ const quipsL = [
 ];
 const quipsW = [
   "Ahhhhhhhhhhhhhhhhhhhhhhhhh",
-  "SAVor yr VIctOrY TIlL U CAn.....X-X",
+  "LMAO DED",
   "VICTORY ROYALE",
   "I'll BE BAck....X-X",
   "Yamete Kudasai!",
